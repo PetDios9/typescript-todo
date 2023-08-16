@@ -1,3 +1,7 @@
+$dark-mode: #242424;
+$light-mode: #efefef;
+
+
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -19,7 +23,7 @@ body {
     align-items: center;
     min-width: 320px;
     min-height: 100vh;
-    background-color: #242424;
+    background-color: $dark-mode;
   }
 
 button {
@@ -36,13 +40,23 @@ button {
     color: #000;
     width: 250px;
     height: 150px;
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 30px;
     .text-container {
-        padding: 2%;
+       overflow: auto;
+    }
+}
+@mixin glow-color($val) {
+    @if $val == dark {
+        box-shadow: 0 0 16px 0 #fff;
+    }
+    @else {
+        box-shadow: 0 0 16px 0 #000;
     }
 }
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0 16px 0 #fff;
 }
