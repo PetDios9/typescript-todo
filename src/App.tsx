@@ -1,11 +1,11 @@
+import CardContainer from './components/CardContainer'
 import './scss/main.scss'
-import Card from './components/Card'
 
 function App() {
   return (
     <>
       <div>
-        <Card />
+        <CardContainer />
       </div>
     </>
   )
