@@ -1,12 +1,12 @@
 import CardContainer from './components/CardContainer'
+import InputBarContainer from './components/InputBarContainer'
 import './scss/main.scss'
 
 function App() {
   return (
     <>
-      <div>
-        <CardContainer />
-      </div>
+      <InputBarContainer />
+      <CardContainer />
     </>
   )
 }
