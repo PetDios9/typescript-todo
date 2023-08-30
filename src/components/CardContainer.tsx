@@ -1,12 +1,18 @@
+import { useSelector } from "react-redux"
 import Card from "./ui/Card"
+import { RootState } from "../redux/todoStore"
 
 function CardContainer() {
+const todoList = useSelector((state: RootState) => state)
+
+
   return (
     <div className="card-container">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {
+            todoList.todo.map((todo) => {
+                return <Card id={todo.id} description={todo.description} />
+            })
+        }
     </div>
   )
 }

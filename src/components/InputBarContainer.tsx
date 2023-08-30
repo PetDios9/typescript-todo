@@ -1,15 +1,27 @@
 import {useState, ChangeEvent} from 'react'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../redux/todoStore'
+import { addTodo } from '../redux/slices/todosSlice'
 
 function InputBarContainer() {
-  const [textInput, setTextInput] = useState<string>()
+  const [todoInput, setTodoInput] = useState<string>()
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTextInput(e.currentTarget.value)
+    setTodoInput(e.currentTarget.value)
   }
+
+  //Redux
+  const dispatch = useDispatch<AppDispatch>()
+
   return (
     <div className="input-bar-container">
         <label>What do you need to do?</label><br />
-        <input className="todo-input-bar" type="text" value={textInput} onChange={handleChange} /> <br />
-        <button className="submit-button" type="submit">Add To-Do</button>
+        <input className="todo-input-bar" type="text" value={todoInput} onChange={handleChange} /> <br />
+        <button className="submit-button" type="submit" onClick={() => {
+          dispatch(addTodo(todoInput!))
+          setTodoInput('')
+        }}>
+          Add To-Do
+        </button>
     </div>
   )
 }
