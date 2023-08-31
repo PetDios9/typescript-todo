@@ -1,13 +1,14 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/todoStore";
-import { removeTodo } from "../../redux/slices/todosSlice";
+import { removeTodo, setTodoStatus } from "../../redux/slices/todosSlice";
 
 interface CardProps {
   id: string,
   description: string;
+  completed: boolean
 }
 
-function Card({ description, id } : CardProps) {
+function Card({ description, id, completed } : CardProps) {
   const dispatch = useDispatch<AppDispatch>()
   return (
     <div className="card">
@@ -18,7 +19,7 @@ function Card({ description, id } : CardProps) {
             <p>{description}</p>
         </div>
         <div className="checkbox-container">
-            <input type="checkbox" />
+            <input type="checkbox" checked={completed} onClick={() => dispatch(setTodoStatus({ completed: !completed, id: id }))} />
         </div>
     </div>
   )
