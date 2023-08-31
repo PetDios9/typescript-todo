@@ -17,8 +17,10 @@ function InputBarContainer() {
         <label>What do you need to do?</label><br />
         <input className="todo-input-bar" type="text" value={todoInput} onChange={handleChange} /> <br />
         <button className="submit-button" type="submit" onClick={() => {
-          dispatch(addTodo(todoInput!))
-          setTodoInput('')
+          if (todoInput) {
+            dispatch(addTodo(todoInput!))
+            setTodoInput('')
+          }
         }}>
           Add To-Do
         </button>
