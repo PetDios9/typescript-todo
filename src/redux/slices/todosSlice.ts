@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Todo } from '../../models/Todo'
 import { v4 as uuidv4 } from "uuid"
 
-const initialState = [] as Todo[];
+const localStorageTodos = window.localStorage.getItem('todos') ? JSON.parse(window.localStorage.getItem('todos')!) : []
+const initialState = localStorageTodos as Todo[];
 
 const todoSlice = createSlice({
     name: 'todos',
@@ -11,6 +12,7 @@ const todoSlice = createSlice({
         addTodo: {
             reducer: (state, action: PayloadAction<Todo>) => {
                 state.push(action.payload)
+                window.localStorage.setItem('todos', JSON.stringify(state))
             },
             prepare: (description: string) => ({
                 payload: {
@@ -23,6 +25,7 @@ const todoSlice = createSlice({
         removeTodo(state, action: PayloadAction<string>) {
             const index = state.findIndex(todo => todo.id === action.payload)
             state.splice(index, 1);
+            window.localStorage.setItem('todos', JSON.stringify(state))
         },
         setTodoStatus(
             state,
@@ -30,6 +33,7 @@ const todoSlice = createSlice({
         ) {
             const index = state.findIndex((todo) => todo.id === action.payload.id)
             state[index].completed = action.payload.completed
+            window.localStorage.setItem('todos', JSON.stringify(state))
         }
     }
 })
