@@ -4,7 +4,7 @@ import { AppDispatch } from '../redux/todoStore'
 import { addTodo } from '../redux/slices/todosSlice'
 
 function InputBarContainer() {
-  const [todoInput, setTodoInput] = useState<string>()
+  const [todoInput, setTodoInput] = useState<string>('')
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTodoInput(e.currentTarget.value)
   }
